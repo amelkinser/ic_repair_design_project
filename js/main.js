@@ -65,7 +65,7 @@ let btnNext = document.querySelector('#btn-prev');
 let btnLeft = document.querySelector('#btn-left');
 let btnRight = document.querySelector('#btn-right');
 
-// Находим кнопки меню слайдера
+// Находим ссылки меню слайдера
 let projectmenuBtn1 = document.querySelector('#project__menu-btn1');
 let projectmenuBtn2 = document.querySelector('#project__menu-btn2');
 let projectmenuBtn3 = document.querySelector('#project__menu-btn3');
@@ -90,7 +90,7 @@ async function changeObject(cs, ns) {
   // cs - номер текущего слайдера
   // ns - номер нового слайдера
 
-  // Определяем, какой кружок и кнопка меню слайдера д.б. выделены
+  // Определяем, какой кружок и ссылка меню слайдера д.б. выделены
   // (присваиваем дополнительный класс)
   if (ns == 0) {
     projectmenuBtn1.classList.add("project__menu-link--active");
@@ -151,10 +151,11 @@ async function changeObject(cs, ns) {
 
 //-------Событие клика мышью по стрелке для перемотки слайдера «вперёд» ---------
 
-btnNext.addEventListener('click', () => {
+btnNext.addEventListener('click', (e) => {
   let cs = 0, ns = 0;
   // cs - номер текущего слайдера
   // ns - номер нового слайдера
+  e.preventDefault();
   cs = currObject;
   if (cs == numObject - 1) ns = 0;
   else ns = cs + 1;
@@ -163,10 +164,11 @@ btnNext.addEventListener('click', () => {
 });
 
 // Для кнопки, появляющейся на слайдере при размере экрана меньше 860px
-btnRight.addEventListener('click', () => {
+btnRight.addEventListener('click', (e) => {
   let cs = 0, ns = 0;
   // cs - номер текущего слайдера
   // ns - номер нового слайдера
+  e.preventDefault();
   cs = currObject;
   if (cs == numObject - 1) ns = 0;
   else ns = cs + 1;
@@ -177,10 +179,11 @@ btnRight.addEventListener('click', () => {
 
 //--------- Событие клика мышью по стрелке для перемотки слайдера «назад» ------
 
-btnPrev.addEventListener('click', () => {
+btnPrev.addEventListener('click', (e) => {
   let cs = 0, ns = 0;
   // cs - номер текущего слайдера
   // ns - номер нового слайдера
+  e.preventDefault();
   cs = currObject;
   if (cs == 0) ns = numObject - 1;
   else ns = cs - 1;
@@ -189,10 +192,11 @@ btnPrev.addEventListener('click', () => {
 });
 
 // Для кнопки, появляющейся на слайдере при размере экрана меньше 860px
-btnLeft.addEventListener('click', () => {
+btnLeft.addEventListener('click', (e) => {
   let cs = 0, ns = 0;
   // cs - номер текущего слайдера
   // ns - номер нового слайдера
+  e.preventDefault();
   cs = currObject;
   if (cs == 0) ns = numObject - 1;
   else ns = cs - 1;
@@ -201,36 +205,42 @@ btnLeft.addEventListener('click', () => {
 });
 
 
-//--------- Обработчики кнопок меню слайдера -------
+//--------- Обработчики меню слайдера -------
 
-projectmenuBtn1.addEventListener('click', () => {
+projectmenuBtn1.addEventListener('click', (e) => {
+  e.preventDefault();
   if (currObject == 0) return;
   changeObject(currObject, 0);
 });
 
-projectmenuBtn2.addEventListener('click', () => {
+projectmenuBtn2.addEventListener('click', (e) => {
+  e.preventDefault();
   if (currObject == 1) return;
   changeObject(currObject, 1);
 });
 
-projectmenuBtn3.addEventListener('click', () => {
+projectmenuBtn3.addEventListener('click', (e) => {
+  e.preventDefault();
   if (currObject == 2) return;
   changeObject(currObject, 2);
 });
 
 //--------- Обработчики элементов навигации (точек м/ду стрелками) --------------
 
-dotBtn1.addEventListener('click', () => {
+dotBtn1.addEventListener('click', (e) => {
+  e.preventDefault();
   if (currObject == 0) return;
   changeObject(currObject, 0);
 });
 
-dotBtn2.addEventListener('click', () => {
+dotBtn2.addEventListener('click', (e) => {
+  e.preventDefault();
   if (currObject == 1) return;
   changeObject(currObject, 1);
 });
 
-dotBtn3.addEventListener('click', async () => {
+dotBtn3.addEventListener('click', (e) => {
+  e.preventDefault();
   if (currObject == 2) return;
   changeObject(currObject, 2);
 });

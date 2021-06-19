@@ -369,7 +369,7 @@ h3 {
   align-items: center;
   justify-content: space-between;
 }
-
+/* 
 .dot {
   border: none;
   background-color: transparent;
@@ -380,6 +380,14 @@ h3 {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   cursor: pointer;
+} */
+
+.dot {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
 }
 
 .dot--active {
@@ -390,12 +398,16 @@ h3 {
   margin-left: 12px;
 }
 
-.dot-arrow {
+/* .dot-arrow {
   display: inline-block;
   border: none;
   background-color: transparent;
   padding: 0;
   cursor: pointer;
+} */
+
+.dot-arrow{
+  display: inline-block;
 }
 
 .project__menu {
@@ -410,7 +422,7 @@ h3 {
   margin-left: 60px;
 }
 
-.project__menu-link {
+/* .project__menu-link {
   border: none;
   background-color: transparent;
   padding: 0;
@@ -425,6 +437,19 @@ h3 {
   border-bottom: 1px solid transparent;
   padding-bottom: 7px;
   cursor: pointer;
+} */
+
+.project__menu-link {
+  font-family: "YesevaOne-Regular", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  transition: all 0.3s;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 7px;
 }
 
 .project__menu-link:hover,
@@ -439,13 +464,13 @@ h3 {
 
 #btn-left,
 #btn-right {
-  border: none;
+  /* border: none;
   background-color: transparent;
-  padding: 0;
+  padding: 0; */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
+  /* cursor: pointer; */
   display: none;
 }
 
