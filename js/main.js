@@ -30,6 +30,7 @@ const numObject = images.length; // число слайдеров
 let currObject = 0; // текущий слайдер с картинкой и текстом, отображаемый на экране
 let newOpacity = 1; // прозрачность картинки слайдера
 
+
 let img_work = [];
 for (let i = 0; i < numObject; i++) { // создаём массив изображений с тегом img
   img_work[i] = document.createElement("img");
@@ -66,15 +67,18 @@ let btnLeft = document.querySelector('#btn-left');
 let btnRight = document.querySelector('#btn-right');
 
 // Находим ссылки меню слайдера
-let projectmenuBtn1 = document.querySelector('#project__menu-btn1');
-let projectmenuBtn2 = document.querySelector('#project__menu-btn2');
-let projectmenuBtn3 = document.querySelector('#project__menu-btn3');
+menuNodes = document.querySelectorAll('.project__menu-link');
+let targetMenu = [];
+for (let i = 0; i < menuNodes.length; i++) {
+  targetMenu[i] = menuNodes[i];
+}
 
 // Находим кружочки м/ду стрелками слайдера
-let dotBtn1 = document.querySelector('#dot-btn1');
-let dotBtn2 = document.querySelector('#dot-btn2');
-let dotBtn3 = document.querySelector('#dot-btn3');
-
+dotsNodes = document.querySelectorAll('.dot');
+let targetDot = [];
+for (let i = 0; i < dotsNodes.length; i++) {
+  targetDot[i] = dotsNodes[i];
+}
 
 
 //---------------------------------------------------------------
@@ -91,30 +95,15 @@ async function changeObject(cs, ns) {
   // ns - номер нового слайдера
 
   // Определяем, какой кружок и ссылка меню слайдера д.б. выделены
-  // (присваиваем дополнительный класс)
-  if (ns == 0) {
-    projectmenuBtn1.classList.add("project__menu-link--active");
-    projectmenuBtn2.classList.remove("project__menu-link--active");
-    projectmenuBtn3.classList.remove("project__menu-link--active");
-    dotBtn1.classList.add("dot--active");
-    dotBtn2.classList.remove("dot--active");
-    dotBtn3.classList.remove("dot--active");
-  }
-  else if (ns == 1) {
-    projectmenuBtn2.classList.add("project__menu-link--active");
-    projectmenuBtn1.classList.remove("project__menu-link--active");
-    projectmenuBtn3.classList.remove("project__menu-link--active");
-    dotBtn2.classList.add("dot--active");
-    dotBtn1.classList.remove("dot--active");
-    dotBtn3.classList.remove("dot--active");
-  }
-  else if (ns == 2) {
-    projectmenuBtn3.classList.add("project__menu-link--active");
-    projectmenuBtn1.classList.remove("project__menu-link--active");
-    projectmenuBtn2.classList.remove("project__menu-link--active");
-    dotBtn3.classList.add("dot--active");
-    dotBtn1.classList.remove("dot--active");
-    dotBtn2.classList.remove("dot--active");
+  // (присваиваем дополнительный класс --active)
+  targetMenu[ns].classList.add("project__menu-link--active");
+  targetDot[ns].classList.add("dot--active");
+
+  for (let i = 0; i < numObject; i++) {
+    if (i != ns) {
+      targetDot[i].classList.remove("dot--active");
+      targetMenu[i].classList.remove("project__menu-link--active");
+    }
   }
 
   // Плавно уменьшаем прозрачность текщего слайдера  
@@ -207,40 +196,24 @@ btnLeft.addEventListener('click', (e) => {
 
 //--------- Обработчики меню слайдера -------
 
-projectmenuBtn1.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (currObject == 0) return;
-  changeObject(currObject, 0);
-});
-
-projectmenuBtn2.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (currObject == 1) return;
-  changeObject(currObject, 1);
-});
-
-projectmenuBtn3.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (currObject == 2) return;
-  changeObject(currObject, 2);
-});
+for (let i = 0; i < menuNodes.length; i++) {
+  menuNodes[i].addEventListener('click', (e) => {
+    e.preventDefault();
+    let tar = e.target;
+    let attr = Number(tar.getAttribute('data-menu'));
+    if (currObject == attr) return;
+    changeObject(currObject, attr);
+  });
+}
 
 //--------- Обработчики элементов навигации (точек м/ду стрелками) --------------
 
-dotBtn1.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (currObject == 0) return;
-  changeObject(currObject, 0);
-});
-
-dotBtn2.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (currObject == 1) return;
-  changeObject(currObject, 1);
-});
-
-dotBtn3.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (currObject == 2) return;
-  changeObject(currObject, 2);
-});
+for (let i = 0; i < dotsNodes.length; i++) {
+  dotsNodes[i].addEventListener('click', (e) => {
+    e.preventDefault();
+    let tar = e.target;
+    let attr = Number(tar.getAttribute('data-dot'));
+    if (currObject == attr) return;
+    changeObject(currObject, attr);
+  });
+}
