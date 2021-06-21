@@ -98,13 +98,8 @@ async function changeObject(cs, ns) {
   // (присваиваем дополнительный класс --active)
   targetMenu[ns].classList.add("project__menu-link--active");
   targetDot[ns].classList.add("dot--active");
-
-  for (let i = 0; i < numObject; i++) {
-    if (i != ns) {
-      targetDot[i].classList.remove("dot--active");
-      targetMenu[i].classList.remove("project__menu-link--active");
-    }
-  }
+  targetDot[cs].classList.remove("dot--active");
+  targetMenu[cs].classList.remove("project__menu-link--active");
 
   // Плавно уменьшаем прозрачность текщего слайдера  
   img_work[cs].style.opacity = 1;
@@ -148,7 +143,6 @@ btnNext.addEventListener('click', (e) => {
   cs = currObject;
   if (cs == numObject - 1) ns = 0;
   else ns = cs + 1;
-
   changeObject(cs, ns);
 });
 
@@ -161,7 +155,6 @@ btnRight.addEventListener('click', (e) => {
   cs = currObject;
   if (cs == numObject - 1) ns = 0;
   else ns = cs + 1;
-
   changeObject(cs, ns);
 });
 
@@ -176,7 +169,6 @@ btnPrev.addEventListener('click', (e) => {
   cs = currObject;
   if (cs == 0) ns = numObject - 1;
   else ns = cs - 1;
-
   changeObject(cs, ns);
 });
 
@@ -189,7 +181,6 @@ btnLeft.addEventListener('click', (e) => {
   cs = currObject;
   if (cs == 0) ns = numObject - 1;
   else ns = cs - 1;
-
   changeObject(cs, ns);
 });
 
